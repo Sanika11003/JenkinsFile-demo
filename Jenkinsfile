@@ -22,10 +22,17 @@ pipeline {
         archiveArtifacts artifacts: 'output.txt'
       }
     }
-    stage('Deploy') {
-      steps{
-        echo "Deploying application"
-      }
-    }
+
 }
+  post {
+    always {
+      echo 'Pipeline Finished'
+    }
+    success {
+      echo 'Build Successful'
+    }
+    failure {
+      echo 'Build Failed'
+    }
+  }
 }
